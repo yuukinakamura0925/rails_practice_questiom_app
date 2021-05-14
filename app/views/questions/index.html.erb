@@ -1,4 +1,17 @@
 <h1>質問一覧</h1>
-<% @questions.each do |question| %>
-  <%= question.title %>
-<% end %>
+<div class = "container">
+  <ul>
+  <% @questions.each do |question| %>
+    <li>
+    <%= link_to question.title, question_path(question) %>
+    <% if current_user.present?  %> <%#まずログインしているかどうかで分岐 %>
+      <% if question.user_id == current_user.id %>
+        <%= link_to "編集", edit_question_path(question), class: "btn btn-success" %>
+        <%= link_to "削除", question_path(question), class: "btn btn-danger", data: { confirm: "削除しますか", }, method: :delete %>
+      <% end %>
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
