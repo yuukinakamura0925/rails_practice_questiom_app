@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration[6.1]
       t.text :body, null: false
       t.references :user, null: false, foreign_key: true
       t.references :question, null: false, foreign_key: true
-
+      # foreign_key: true 外部キー誓約 データの整合性
       t.timestamps
     end
   end
