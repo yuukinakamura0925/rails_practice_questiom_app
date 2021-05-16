@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @q = Question.ransack(params[:q])
+    @questions = @q.result(disitinct: true)
   end
 
   def show
